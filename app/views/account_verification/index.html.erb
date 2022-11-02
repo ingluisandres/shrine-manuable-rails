@@ -1,0 +1,23 @@
+<h1>Albums</h1>
+
+<div class="mb-3">
+  <%= link_to "+ New Album", new_account_verification_path, class: "btn btn-success" %>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Cover</th>
+      <th scope="col">Name</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @account_verification_document.each do |album| %>
+      <tr>
+        <td scope="row"><%= image_tag album.file_url(:small), size: "100x100", class: "img-thumbnail" %></td>
+        <td scope="row"><%= link_to "Edit", album, class: "btn btn-default" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

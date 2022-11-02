@@ -1,0 +1,127 @@
+<%= form_for @account_verification_document do |f| %>
+  <% if @account_verification_document.errors.any? %>
+    <ul class="list-unstyled alert alert-danger">
+      <% @account_verification_document.errors.full_messages.each do |message| %>
+        <li>account_verification_document <%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div data-controller="single-upload" data-single-upload-types-value="<%= ImageUploader::ALLOWED_TYPES.to_json %>" data-single-upload-server-value="<%= upload_server %>">
+    <div class="mb-3">
+      <%= f.label :file, class: "form-label" %>
+
+      <!-- for storing cover photo uploaded file data -->
+      <%= f.hidden_field :file,
+        value: @account_verification_document.cached_file_data,
+        data: { single_upload_target: "result" },
+        id: nil %>
+
+      <!-- will be replaced by Uppy -->
+      <%= f.file_field :file,
+        class: "form-control",
+        data: { single_upload_target: "input" } %>
+    </div>
+
+    <div class="d-inline-block mt-1 mb-3">
+      <!-- static link to the thumbnail generated on attachment -->
+      <%= image_tag @account_verification_document.file_url(:medium).to_s,
+        width: 300,
+        class: "img-thumbnail file-upload-preview",
+        data: { single_upload_target: "preview" } %>
+    </div>
+  </div>
+
+    <div data-controller="single-upload" data-single-upload-types-value="<%= ImageUploader::ALLOWED_TYPES.to_json %>" data-single-upload-server-value="<%= upload_server %>">
+    <div class="mb-3">
+      <%= f.label :file, class: "form-label" %>
+
+      <!-- for storing cover photo uploaded file data -->
+      <%= f.hidden_field :ine,
+        value: @account_verification_document.cached_file_data,
+        data: { single_upload_target: "result" },
+        id: nil %>
+
+      <!-- will be replaced by Uppy -->
+      <%= f.file_field :ine,
+        class: "form-control",
+        data: { single_upload_target: "input" } %>
+    </div>
+
+    <div class="d-inline-block mt-1 mb-3">
+      <!-- static link to the thumbnail generated on attachment -->
+      <%= image_tag @account_verification_document.file_url(:medium).to_s,
+        width: 300,
+        class: "img-thumbnail file-upload-preview",
+        data: { single_upload_target: "preview" } %>
+    </div>
+  </div>
+
+    <div data-controller="single-upload" data-single-upload-types-value="<%= ImageUploader::ALLOWED_TYPES.to_json %>" data-single-upload-server-value="<%= upload_server %>">
+    <div class="mb-3">
+      <%= f.label :file, class: "form-label" %>
+
+      <!-- for storing cover photo uploaded file data -->
+      <%= f.hidden_field :comp_domicilio,
+        value: @account_verification_document.cached_file_data,
+        data: { single_upload_target: "result" },
+        id: nil %>
+
+      <!-- will be replaced by Uppy -->
+      <%= f.file_field :comp_domicilio,
+        class: "form-control",
+        data: { single_upload_target: "input" } %>
+    </div>
+
+    <div class="d-inline-block mt-1 mb-3">
+      <!-- static link to the thumbnail generated on attachment -->
+      <%= image_tag @account_verification_document.file_url(:medium).to_s,
+        width: 300,
+        class: "img-thumbnail file-upload-preview",
+        data: { single_upload_target: "preview" } %>
+    </div>
+  </div>
+
+    <div data-controller="single-upload" data-single-upload-types-value="<%= ImageUploader::ALLOWED_TYPES.to_json %>" data-single-upload-server-value="<%= upload_server %>">
+    <div class="mb-3">
+      <%= f.label :file, class: "form-label" %>
+
+      <!-- for storing cover photo uploaded file data -->
+      <%= f.hidden_field :selfie,
+        value: @account_verification_document.cached_file_data,
+        data: { single_upload_target: "result" },
+        id: nil %>
+
+      <!-- will be replaced by Uppy -->
+      <%= f.file_field :selfie,
+        class: "form-control",
+        data: { single_upload_target: "input" } %>
+    </div>
+
+    <div class="d-inline-block mt-1 mb-3">
+      <!-- static link to the thumbnail generated on attachment -->
+      <%= image_tag @account_verification_document.file_url(:medium).to_s,
+        width: 300,
+        class: "img-thumbnail file-upload-preview",
+        data: { single_upload_target: "preview" } %>
+    </div>
+  </div>
+
+  <% if @account_verification_document.persisted? %>
+    <div class="mb-3" data-controller="multiple-upload" data-multiple-upload-types-value="<%= ImageUploader::ALLOWED_TYPES.to_json %>" data-multiple-upload-server-value="<%= upload_server %>">
+      <!-- will be replaced by Uppy -->
+      <%= f.label :photos, "Select photos", class: "form-label" %>
+      <%= f.file_field :photos,
+        multiple: true,
+        class: "form-control",
+        data: { multiple_upload_target: "input" } %>
+    </div>
+  <% end %>
+
+
+
+  <%= f.submit "Save", class: "btn btn-primary" %>
+  <%= link_to account_verification_index_path, class: "btn btn-light" do %>
+    &larr; Back to account_verification_documents
+  <% end %>
+<% end %>
